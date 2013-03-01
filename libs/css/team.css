@@ -1,0 +1,664 @@
+/**
+ * User: zoe
+ * Date: 12/21/12
+ * Time: 10:50 AM
+ */
+body, div, input, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+input, textarea {
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    display: block;
+}
+
+body {
+    background: #E6E6E6;
+    font: 12px Arial, "宋体", Helvetica, sans-serif;
+    position: relative;
+    overflow: hidden;
+    -moz-user-select: none;
+    color: #393939;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+    border-color: #2887BD;
+    color: black;
+}
+
+.team_h2 {
+    font-size: 18px;
+    font-weight: bold;
+    height: 20px;
+    padding: 10px 0;
+}
+
+.team_label {
+    font-weight: bold;
+    height: 14px;
+    padding: 9px 0;
+}
+
+.team_text {
+    color: #939393;
+    height: 14px;
+}
+
+.team_close {
+    height: 18px;
+    width: 18px;
+    background: url(images/icon.png) no-repeat -414px -108px;
+}
+
+.team_close:hover {
+    background-position: -414px -90px;
+}
+
+.team_arrows {
+    width: 0;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.team_panel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.team_form {
+    width: 300px;
+    padding: 4px;
+}
+
+.team_form input {
+    width: 250px;
+    background-color: #E9E9E9;
+    border: 1px solid #BFBFBF;
+    border-radius: 3px;
+    height: 18px;
+    padding: 6px 0;
+}
+
+.team_button {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background: #24A828;
+    border-radius: 3px;
+    font-size: 14px;
+    height: 16px;
+    padding: 12px 20px;
+}
+
+.team_button:hover {
+    background: #1F9323;
+}
+
+.team_button:active {
+    background: #1B7E1E;
+}
+
+.team_link {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: #939393;
+    border-bottom: 1px solid #939393;
+    height: 14px;
+}
+
+.team_link:hover {
+    color: #000000;
+    border-color: #000000;
+}
+
+.team_default_head {
+    width: 30px;
+    height: 30px;
+    background: url(images/default_head.png) no-repeat 0 0;
+}
+
+.team_arrows_button {
+    position: relative;
+    margin: 10px 0 0 5px;
+    padding: 0 0 0 8px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.team_arrows_button .team_arrows {
+    border-width: 5px 5px 5px 5px;
+    position: absolute;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #5E98BA;
+    top: 2px;
+    left: 0;
+}
+
+.team_arrows_button.expanded .team_arrows {
+    border-style: solid dashed dashed dashed;
+    border-color: #5E98BA transparent transparent transparent;
+    top: 5px;
+    left: -3px;
+}
+
+/*-------------------------------------------------team_user---------------------------------------*/
+.team_user {
+    width: 500px;
+    background: #F0F0F0;
+    border: 1px solid #BFBFBF;
+    border-radius: 3px;
+    padding: 20px;
+    position: absolute;
+    top: 100px;
+    left: 350px;
+}
+
+.user_get_password_form {
+    width: 500px;
+}
+
+.mobile_login {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+}
+
+.mobile_login_qrcode {
+    width: 200px;
+    height: 200px;
+    background: url(images/mobile_qrcode.jpg) no-repeat 0 0;
+}
+
+.user_register_button.team_button, .user_get_password_button.team_button {
+    margin: 8px 4px 9px 0;
+    width: 150px;
+}
+
+.user_login_button.team_button {
+    margin: 8px 4px 9px 0;
+    width: 50px;
+}
+
+.user_to_login {
+    top: 0;
+    left: 70px;
+    position: absolute;
+}
+
+.user_to_get_password {
+    top: 20px;
+    left: 110px;
+    position: absolute;
+}
+
+.user_to_register {
+    top: 0;
+    left: 80px;
+    position: absolute;
+}
+
+/*-------------------------------------------------team_main---------------------------------------*/
+.team_main {
+    height: 100%;
+}
+
+.main_header {
+    height: 30px;
+    background: #23658B;
+    padding: 5px 8px;
+}
+
+.user_menu_button {
+    background-color: #CCC;
+    border: 1px solid #B9B9B9;
+    color: #444;
+    height: 14px;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    float: right;
+    position: relative;
+}
+
+.main_header_button {
+    cursor: pointer;
+    border-radius: 3px;
+    color: #E3E3E3;
+    font-weight: bold;
+    margin-right: 15px;
+    padding: 8px;
+    background: #2B7CAB;
+    float: right;
+    position: relative;
+}
+
+.main_header_button:hover {
+    background: #3291C8;
+}
+
+.main_header_button:active {
+    background: #2B7CAB;
+}
+
+.user_menu_window {
+    top: 42px;
+    right: 0;
+}
+
+.add_friend_window {
+    color: #444;
+    top: 45px;
+    left: 600px;
+    font-weight: normal;
+}
+
+.main_content {
+    position: relative;
+    overflow: hidden;
+    zoom: 1;
+    height: 95%;
+}
+
+.main_content_header {
+    height: 30px;
+    overflow: hidden;
+    padding: 6px 8px;
+    position: relative;
+}
+
+.main_content_center {
+    background: #164B69;
+    overflow: hidden;
+    position: relative;
+    height: 90%;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 5px 8px 5px 8px;
+}
+
+.main_chat {
+    margin: 4px 0;
+    position: absolute;
+    right: 0;
+    top: 42px;
+    width: 188px;
+    height: 90%;
+    background: #F0F0F0;
+}
+
+.main_content_tool {
+    margin: 5px 0;
+    position: absolute;
+    right: 0;
+    top: 38px;
+    width: 231px;
+    height: 90%;
+    background: #E6E6E6;
+}
+
+.main_side_button {
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 25px;
+}
+
+.main_side_button:hover {
+    background: rgba(179, 227, 255, 0.11);
+}
+
+.main_side_button .team_arrows {
+    border-width: 8px 8px 8px 8px;
+    position: absolute;
+    top: 50%;
+}
+
+.main_right_side {
+    right: 0;
+}
+
+.main_left_side {
+    left: 0;
+}
+
+.main_right_side .team_arrows, .main_left_side.expanded .team_arrows {
+    border-style: dashed solid dashed dashed;
+    border-color: transparent #5E98BA transparent transparent;
+    left: 0;
+}
+
+.main_left_side .team_arrows, .main_right_side.expanded .team_arrows {
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #5E98BA;
+    left: 9px;
+}
+
+/*-------------------team-user-menu-----------------*/
+.team_user_menu {
+    width: 270px;
+}
+
+.team_user_menu .user_menu_item {
+    font-weight: bold;
+    padding: 6px 10px;
+}
+
+.team_user_menu .user_menu_item:hover {
+    background-color: #2887BD;
+    color: white;
+}
+
+.team_user_menu .user_menu_item:active {
+    background-color: #2478A8;
+}
+
+/*-------------------team-add-friend-----------------*/
+.team_add_friend {
+    width: 500px;
+}
+
+.team_add_friend .team_form {
+    padding: 4px 100px;
+}
+
+.team_add_friend .team_form .team_label {
+    display: inline-block;
+}
+
+.team_add_friend .team_form input {
+    display: inline-block;
+}
+
+.search_user_list {
+    max-height: 300px;
+}
+
+.search_user_list .yy_list_item {
+    cursor: pointer;
+    padding: 10px 0 10px 40px;
+    height: 18px;
+}
+
+.search_user_list .yy_list_item .team_default_head {
+    position: absolute;
+    top: 4px;
+    left: 0;
+}
+
+.search_user_list .yy_list_item .team_button {
+    position: absolute;
+    top: 4px;
+    right: 15px;
+    width: 50px;
+    height: 14px;
+    font-size: 12px;
+    padding: 8px 8px;
+}
+
+.search_user_message_panel {
+    text-align: center;
+}
+
+/*----------------------team-chat---------------------*/
+.team_chat {
+    position: relative;
+    width: 180px;
+    height: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 75, .2);
+}
+
+.team-chat-message-area {
+    width: 800px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -800px;
+    z-index: 10;
+}
+
+.chat_tab {
+    width: 100%;
+    height: 31px;
+}
+
+.chat_tab_item {
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 30px;
+    border-right: solid 1px #dadada;
+    border-bottom: solid 1px #dbdbdb;
+    background: #eaeaea;
+    cursor: pointer;
+}
+
+.chat_tab_item.yy_selected, .chat_tab_item.yy_selected:hover {
+    background: white;
+}
+
+.chat_tab_item:hover {
+    background: #C0C0C0;
+}
+
+.chat_tab_item .chat_tab_img {
+    width: 28px;
+    height: 24px;
+    margin: 2px auto;
+}
+
+.chat_contact_tab {
+    left: 0;
+}
+
+.chat_group_tab {
+    left: 60px;
+}
+
+.chat_last_tab {
+    left: 120px;
+}
+
+.chat_contact_tab .chat_tab_img {
+    background: url(images/icon.png) no-repeat -30px -33px;
+}
+
+.chat_contact_tab.yy_selected .chat_tab_img {
+    background-position: -30px -3px;
+}
+
+.chat_group_tab .chat_tab_img {
+    background: url(images/icon.png) no-repeat 0 -33px;
+}
+
+.chat_group_tab.yy_selected .chat_tab_img {
+    background-position: 0 -3px;
+}
+
+.chat_last_tab .chat_tab_img {
+    background: url(images/icon.png) no-repeat -330px -33px;
+}
+
+.chat_last_tab.yy_selected .chat_tab_img {
+    background-position: -330px -3px;
+}
+
+.chat_panel {
+    height: 95%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.message_notify_list {
+    height: 38px;
+    width: 180px;
+    position: absolute;
+    bottom: 3px;
+    left: 200px;
+    z-index: 1000;
+    background: #E6E6E6;
+    border-radius: 3px;
+}
+
+.message_notify_list .yy_list_item, .chat_contact_list .yy_list_item {
+    cursor: pointer;
+    padding: 12px 0 12px 40px;
+    height: 14px;
+}
+
+.message_notify_list .yy_list_item .team_default_head, .chat_contact_list .yy_list_item .team_default_head {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.chat_contact_online {
+    width: 11px;
+    height: 11px;
+    background: url(images/icon.png) no-repeat -614px -94px;
+}
+
+.chat_contact_list .yy_list_item .chat_contact_online {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+}
+
+.chat_window {
+    width: 420px;
+    height: 400px;
+    top: 0px;
+    left: 20px;
+    cursor: default;
+}
+/*-------------------team-chat-message----------------------------*/
+
+.chat_message_list {
+    border-bottom: 1px solid gainsboro;
+}
+
+.chat_message_list {
+    padding: 0 15px;
+    height: 220px;
+}
+
+.chat_message_list .yy_list_item {
+    cursor: default;
+    padding: 0 10px 0 10px;
+    height: auto;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.chat_message_list .yy_list_item:hover {
+    background: transparent;
+}
+
+.chat_message_list .chat_message_me, .chat_message_list .chat_message_friend {
+    padding: 2px 0;
+    position: relative;
+}
+
+.chat_message_list .chat_message_me {
+    min-width: 10%;
+    max-width: 80%;
+    float: right;
+    position: relative;
+    clear: both;
+}
+
+.chat_message_list .chat_message_friend {
+    min-width: 5%;
+    max-width: 80%;
+    float: left;
+    position: relative;
+    clear: both;
+}
+
+.chat_message_me .chat_message_time, .chat_message_friend .chat_message_time {
+    height: 12px;
+    font-size: 10px;
+    padding: 2px 0;
+}
+
+.chat_message_me .chat_message, .chat_message_friend .chat_message {
+    padding: 2px;
+    border: 1px solid #b4cc85;
+    background: #b4cc85;
+    border-radius: 3px;
+    word-wrap: break-word;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.chat_message_me .chat_message_time {
+    text-align: right;
+}
+
+.chat_message_friend .chat_message_time {
+    text-align: left;
+}
+
+.chat_message_me .chat_message_arrows, .chat_message_friend .chat_message_arrows {
+    border-width: 6px 6px 6px 6px;
+    position: absolute;
+}
+
+.chat_message_friend .chat_message_arrows {
+    border-color: transparent #b4cc85 transparent transparent;
+    border-style: dashed solid dashed dashed;
+    top: 20px;
+    left: -12px;
+}
+
+.chat_message_me .chat_message_arrows {
+    border-color: transparent transparent transparent #b4cc85;
+    border-style: dashed dashed dashed solid;
+    top: 20px;
+    right: -11px;
+}
+
+.chat_message_form {
+    margin: 0 5px;
+}
+
+.chat_message_form textarea {
+    border: none;
+    overflow: hidden;
+    height: 105px;
+    padding: 8px;
+    width: 390px;
+    font-size: 12px;
+}
+
+.send_message_button {
+    height: 15px;
+    padding: 4px 15px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.chat_canvas {
+    background: #F0F0F0;
+}
+
+.surprise_button {
+    height: 15px;
+    padding: 4px 15px;
+    position: absolute;
+    bottom: 5px;
+    right: 65px;
+}
+
+
+
+
+
+
+

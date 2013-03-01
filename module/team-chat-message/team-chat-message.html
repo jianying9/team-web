@@ -1,0 +1,9 @@
+<div id="team-chat-message" class="yy_module" yyFinishedListener="team-chat-message.initListener">
+    <div id="chat-message-list" class="yy_list chat_message_list" yyMessageListener="team-chat-message.userMessageListener"></div>
+    <div id="chat-message-form" title="按Enter键发送消息" class="yy_form chat_message_form" yyEventListener="team-chat-message.messageFormListener">
+        <textarea name="message"></textarea>
+    </div>
+    <canvas id="chat-canvas" class="yy_canvas chat_canvas yy_hide" width="420" height="340" yyMessageListener="team-chat-message.canvasMessageListener"></canvas>
+    <div class="yy_button send_message_button team_button" yyEventListener="team-chat-message.sendMessageButtonListener">发送</div>
+    <div class="yy_button surprise_button team_button" yyEventListener="team-chat-message.surpriseButtonListener">切换</div>
+</div>

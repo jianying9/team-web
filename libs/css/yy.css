@@ -1,0 +1,79 @@
+.yy_button {
+    cursor: pointer;
+}
+
+.yy_hide {
+    display: none;
+}
+
+.yy_window {
+    background: #F0F0F0;
+    border: 1px solid #B9B9B9;
+    border-radius: 3px;
+    padding: 4px;
+    z-index: 1;
+    position: absolute;
+}
+
+.yy_window .yy_window_header {
+    height: 16px;
+    border-bottom: 1px solid gainsboro;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.yy_window.yy_notify .yy_window_header {
+    background: #2B7CAB;
+}
+
+.yy_window.yy_move .yy_window_header {
+    cursor: move;
+}
+
+.yy_window_close {
+    height: 18px;
+    width: 18px;
+    background: url(images/icon.png) no-repeat -414px -108px;
+    cursor: pointer;
+}
+
+.yy_window_close:hover {
+    background-position: -414px -90px;
+}
+
+.yy_window .yy_window_close {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+}
+
+.yy_list {
+    position: relative;
+    overflow: hidden;
+}
+
+.yy_panel .yy_scroll, .yy_list .yy_scroll {
+    position: absolute;
+    width: 10px;
+    top: 0;
+    right: 1px;
+    background: #5E98BA;
+    border-radius: 3px;
+    display: none;
+    z-index: 1000;
+}
+
+.yy_panel:hover .yy_scroll, .yy_list:hover .yy_scroll {
+    display: block;
+}
+
+.yy_list .yy_list_item{
+    position: relative;
+}
+
+.yy_list .yy_list_item:hover{
+    background: #dedddd;
+}
+
+

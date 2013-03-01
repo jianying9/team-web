@@ -1,0 +1,25 @@
+<div id="team-chat" class="yy_module team_chat" yyFinishedListener="team-chat.initListener">
+    <div id="team-chat-message-area" class="yy_panel team-chat-message-area"></div>
+    <div class="yy_tab chat_tab">
+        <div id="chat-contact-tab" class="yy_tab_item chat_tab_item chat_contact_tab" yyEventListener="team-chat.contactTabListener" title="好友">
+            <div class="chat_tab_img"></div>
+        </div>
+        <div class="yy_tab_item chat_tab_item chat_group_tab" yyEventListener="team-chat.groupTabListener" title="团队群">
+            <div class="chat_tab_img"></div>
+        </div>
+        <div class="yy_tab_item chat_tab_item chat_last_tab" yyEventListener="team-chat.lastTabListener" title="最近联系人">
+            <div class="chat_tab_img"></div>
+        </div>
+    </div>
+    <div id="chat-contact-panel" class="yy_panel yy_hide chat_panel" yyScroll="true">
+        <div id="contact-online-list" class="yy_list chat_contact_list" yyMessageListener="team-chat.onlineFriendListener"></div>
+        <div id="contact-offline-list" class="yy_list chat_contact_list" yyMessageListener="team-chat.offlineFriendListener"></div>
+    </div>
+    <div id="chat-group-panel" class="yy_panel yy_hide chat_panel">
+        <div class="yy_button team_arrows_button">团队<div class="team_arrows"></div></div>
+    </div>
+    <div id="chat-last-panel" class="yy_panel yy_hide chat_panel">
+        <div class="yy_button team_arrows_button">最近联系人<div class="team_arrows"></div></div>
+    </div>
+    <div id="message-notify-list" class="yy_list message_notify_list yy_hide" yyMessageListener="team-chat.messageNotifyListener"></div>
+</div>

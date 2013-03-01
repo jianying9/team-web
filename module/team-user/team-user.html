@@ -1,0 +1,55 @@
+<div id="team-user" class="yy_module" yyFinishedListener="team-user.initListener">
+    <div id="team-register-panel" class="yy_panel team_user yy_hide">
+        <div id="team-register-form" class="yy_form team_form" yyMessageListener="team-user.registerMessageListener">
+            <div class="team_h2">注册新用户</div>
+            <div class="team_label">昵称</div>
+            <input type="text" name="nickName"/>
+            <div class="team_label">邮箱</div>
+            <input type="text" name="userEmail"/>
+            <div class="team_label">密码</div>
+            <input type="password" name="password" yyInputHandler="MD5"/>
+        </div>
+        <div class="yy_button team_button user_register_button" yyEventListener="team-user.registerListener">注册</div>
+        <div class="yy_ignore team_panel">
+            <div class="team_text">已有帐号?</div>
+            <div class="yy_button team_link user_to_login" yyEventListener="team-user.registerToLoginListener">登录</div>
+        </div>
+    </div>
+    <div id="team-login-panel" class="yy_panel team_user yy_hide">
+        <div id="team-login-form" class="yy_form team_form" yyEventListener="team-user.loginFormListener" yyMessageListener="team-user.loginMessageListener">
+            <div class="team_h2">已有帐号登录</div>
+            <div class="team_label">邮箱</div>
+            <input type="email" name="userEmail"/>
+            <div class="team_label">密码</div>
+            <input type="password" name="password" yyInputHandler="MD5"/>
+        </div>
+        <div class="mobile_login">
+            <div class="team_label">手机版地址</div>
+            <div class="mobile_login_qrcode"></div>
+        </div>
+        <div class="yy_ignore team_panel">
+            <div class="yy_button team_button user_login_button" yyEventListener="team-user.loginListener">登录</div>
+            <div class="yy_button team_link user_to_get_password"
+                 yyEventListener="team-user.loginToGetPasswordListener">忘记密码?
+            </div>
+            <div class="yy_ignore team_panel">
+                <div class="team_text">第一次访问?</div>
+                <div class="yy_button team_link user_to_register" yyEventListener="team-user.loginToRegisterListener">
+                    注册
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="team-get-password-panel" class="yy_panel team_user yy_hide">
+        <div id="user-get-password-form" class="yy_form team_form user_get_password_form">
+            <div class="team_h2">如果您忘记了帐号密码？</div>
+            <div class="team_text">请输入您的注册邮箱，我们会将重置密码的链接发送到邮箱中。</div>
+            <div class="team_label">邮箱</div>
+            <input type="text" name="userEmail"/>
+        </div>
+        <div class="yy_button team_button user_get_password_button" yyEventListener="team-user.getPasswordListener">
+            找回密码
+        </div>
+        <div class="yy_button team_link" yyEventListener="team-user.getPasswordToLoginListener">返回登录</div>
+    </div>
+</div>
