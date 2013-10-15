@@ -344,17 +344,17 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     width: 270px;
 }
 
-.team_user_menu .user_menu_item {
+.team_user_menu > .user_menu_item {
     font-weight: bold;
     padding: 6px 10px;
 }
 
-.team_user_menu .user_menu_item:hover {
+.team_user_menu > .user_menu_item:hover {
     background-color: #2887BD;
     color: white;
 }
 
-.team_user_menu .user_menu_item:active {
+.team_user_menu > .user_menu_item:active {
     background-color: #2478A8;
 }
 
@@ -364,7 +364,8 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 }
 
 .team_add_friend .team_form {
-    padding: 4px 100px;
+    width: 400px;
+    padding: 4px 50px;
 }
 
 .team_add_friend .team_form .team_label {
@@ -372,6 +373,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 }
 
 .team_add_friend .team_form input {
+    display: inline-block;
+}
+
+.team_add_friend .team_form .team_button {
     display: inline-block;
 }
 

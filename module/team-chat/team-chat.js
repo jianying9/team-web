@@ -110,7 +110,7 @@ $.yyLoadListener('team-chat', {
         messageNotifyListener:{
             INSERT_USER_MESSAGE:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
                     if (data.receiveId == loginUserId) {
                         //收到新的消息,查找对应的好友
@@ -159,7 +159,7 @@ $.yyLoadListener('team-chat', {
         onlineFriendListener:{
             LOGOUT:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
                     if (loginUserId != data.userId) {
                         var contactOnlineList = yy.findInModule('contact-online-list');
@@ -176,7 +176,7 @@ $.yyLoadListener('team-chat', {
         offlineFriendListener:{
             LOGIN:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
                     if (loginUserId != data.userId) {
                         var contactOnlineList = yy.findInModule('contact-online-list');
@@ -192,7 +192,7 @@ $.yyLoadListener('team-chat', {
             },
             ASSERT_FRIEND_ONLINE:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     var contactOnlineList = yy.findInModule('contact-online-list');
                     var itemData = contactOnlineList.getItemData(data.userId);
                     if (!itemData) {
@@ -229,9 +229,9 @@ $.yyLoadListener('team-chat', {
                     }
                 }
             },
-            INSERT_FRIEND:function (yy, message) {
+            INSERT_FRIEND_BY_USER_EMAIL:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     yy.addItemData(data);
                     var contactPanel = yy.findInModule('chat-contact-panel');
                     contactPanel.initScroll();

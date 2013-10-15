@@ -85,10 +85,10 @@ $.yyLoadListener('team-chat-message', {
             INSERT_USER_MESSAGE:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
                     var friendId = yy.window.getContext('friendId');
-                    var data = message.data[0];
+                    var data = message.data;
                     if (data.sendId == friendId || data.receiveId == friendId) {
                         var chatMessageList = yy.findInModule('chat-message-list');
-                        chatMessageList.addItemData(message.data[0]);
+                        chatMessageList.addItemData(message.data);
                     }
                 }
             }
@@ -97,7 +97,7 @@ $.yyLoadListener('team-chat-message', {
             SEND_CANVAS_COMMAND:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
                     var friendId = yy.window.getContext('friendId');
-                    var data = message.data[0];
+                    var data = message.data;
                     if (data.sendId == friendId) {
                         yy.draw(data.x, data.y);
                     }

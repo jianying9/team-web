@@ -110,7 +110,7 @@ $.yyLoadListener('team-main', {
         logoutMessageListener:{
             LOGOUT:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
                     if (loginUserId == data.userId) {
                         yy.clearSession();

@@ -15,7 +15,7 @@
     position: absolute;
 }
 
-.yy_window .yy_window_header {
+.yy_window > .yy_window_header {
     height: 16px;
     border-bottom: 1px solid gainsboro;
     text-align: left;
@@ -23,11 +23,11 @@
     padding: 5px 0;
 }
 
-.yy_window.yy_notify .yy_window_header {
+.yy_window.yy_notify > .yy_window_header {
     background: #2B7CAB;
 }
 
-.yy_window.yy_move .yy_window_header {
+.yy_window.yy_move > .yy_window_header {
     cursor: move;
 }
 
@@ -42,7 +42,7 @@
     background-position: -414px -90px;
 }
 
-.yy_window .yy_window_close {
+.yy_window > .yy_window_close {
     position: absolute;
     right: 10px;
     top: 4px;
@@ -53,7 +53,7 @@
     overflow: hidden;
 }
 
-.yy_panel .yy_scroll, .yy_list .yy_scroll {
+.yy_panel > .yy_scroll, .yy_list > .yy_scroll {
     position: absolute;
     width: 10px;
     top: 0;
@@ -64,15 +64,15 @@
     z-index: 1000;
 }
 
-.yy_panel:hover .yy_scroll, .yy_list:hover .yy_scroll {
+.yy_panel:hover > .yy_scroll, .yy_list:hover > .yy_scroll {
     display: block;
 }
 
-.yy_list .yy_list_item{
+.yy_list > .yy_list_item{
     position: relative;
 }
 
-.yy_list .yy_list_item:hover{
+.yy_list > .yy_list_item:hover{
     background: #dedddd;
 }
 

@@ -22,20 +22,20 @@
     $(document).ready(function () {
         //初始化配置
         $.yyConfig({
-            teamServer:'ws://192.168.64.50:9191/team/socket.io',
-            defaultServer:'ws://192.168.64.50:9191/team/socket.io',
+            teamServer:'ws://192.168.59.48:80/team/socket.io',
+            defaultServer:'ws://192.168.59.48:80/team/socket.io',
             logLevel:4
         });
         //加载主模块
-//        $.yyLoadModule('team-user');
-        $.yyLoadModule('team-user', function(yy) {
-            var loginForm = yy.findInModule('team-login-form');
-            loginForm.loadData({userEmail:'ljy18659199765@gmail.com'});
-            loginForm.loadData({userEmail:'ljy18659199765@gmail.com', password:'000000'});
-            var msg = loginForm.getData();
-            msg.act = 'LOGIN';
-            loginForm.sendMessage(msg);
-        });
+        $.yyLoadModule('team-user');
+//        $.yyLoadModule('team-user', function(yy) {
+//            var loginForm = yy.findInModule('team-login-form');
+//            loginForm.loadData({userEmail:'ljy18659199765@gmail.com'});
+//            loginForm.loadData({userEmail:'ljy18659199765@gmail.com', password:'000000'});
+//            var msg = loginForm.getData();
+//            msg.act = 'LOGIN';
+//            loginForm.sendMessage(msg);
+//        });
     });
 </script>
 </body>

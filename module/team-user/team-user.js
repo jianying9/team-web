@@ -80,14 +80,14 @@ $.yyLoadListener('team-user', {
                     registerPanel.fadeOutLeft();
                     loginPanel.fadeInRight();
                     var loginForm = yy.findInModule('team-login-form');
-                    loginForm.loadData(message.data[0]);
+                    loginForm.loadData(message.data);
                 }
             }
         },
         loginMessageListener:{
             LOGIN:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var data = message.data[0];
+                    var data = message.data;
                     yy.setSession({
                         loginNickName:data.nickName,
                         loginUserId:data.userId,

@@ -30,7 +30,7 @@ $.yyLoadPlugin({
         parsers.put('yy_form', {
             group:true,
             config:[],
-            childParsers:[],
+            childParsers:['yy_button'],
             _utils:utils,
             parse:function (yy, config) {
                 yy.extend.field = {};

@@ -1,12 +1,17 @@
 <div id="team-add-friend" class="yy_module team_add_friend" yyFinishedListener="team-add-friend.initListener">
-    <div id="search-user-form" class="yy_form team_form" yyEventListener="team-add-friend.searchListener">
-        <div class="team_label">昵称</div>
-        <input type="text" name="nickName"/>
-        <input type="hidden" name="pageSize" value="10"/>
-        <input type="hidden" name="pageIndex"/>
+    <!--<div id="search-user-form" class="yy_form team_form" yyEventListener="team-add-friend.searchListener">-->
+        <!--<div class="team_label">昵称</div>-->
+        <!--<input type="text" name="nickName"/>-->
+        <!--<input type="hidden" name="pageSize" value="10"/>-->
+        <!--<input type="hidden" name="pageIndex"/>-->
+    <!--</div>-->
+    <!--<div id="search-user-message-panel" class="yy_panel search_user_message_panel">请输入用户昵称</div>-->
+    <!--<div id="search-user-list" class="yy_list search_user_list"-->
+         <!--yyMessageListener="team-add-friend.searchUserMessageListener" yyScroll="true"-->
+            <!--yyEventListener="team-add-friend.searchListListener"></div>-->
+    <div id="add-user-email-form" class="yy_form team_form">
+        <div class="team_label">邮箱</div>
+        <input type="text" name="userEmail"/>
+        <div class="yy_button team_button" yyEventListener="team-add-friend.addFriendByUserEmailListener">添加</div>
     </div>
-    <div id="search-user-message-panel" class="yy_panel search_user_message_panel">请输入用户昵称</div>
-    <div id="search-user-list" class="yy_list search_user_list"
-         yyMessageListener="team-add-friend.searchUserMessageListener" yyScroll="true"
-            yyEventListener="team-add-friend.searchListListener"></div>
 </div>
