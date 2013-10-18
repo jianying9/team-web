@@ -1,5 +1,5 @@
 //
-// User: zoe
+// User: aladdin
 // Date: 8/9/12
 // Time: 11:25 AM
 //
@@ -46,6 +46,7 @@
         modulePath:'module',
         bodyWidth:el.clientWidth,
         bodyHeight:el.clientHeight,
+        version:1,
         set:function (config) {
             for (var name in config) {
                 this[name] = config[name];
@@ -107,7 +108,7 @@
         get:function (name) {
             return this._session[name];
         },
-        clear:function() {
+        clear:function () {
             for (var name in this._session) {
                 delete this._session[name];
             }
@@ -304,7 +305,7 @@
                 complete;
             for (var id in this._taskQueue) {
                 task = this._taskQueue[id];
-                if(task.message) {
+                if (task.message) {
                     this._logger.debug(task.message);
                 }
                 complete = task.execute();
@@ -330,6 +331,8 @@
         _scriptMap:{},
         _logger:logger,
         _taskManager:taskManager,
+        _index:index,
+        _context:context,
         load:function (url, callback) {
             var that = this;
             if (that._scriptMap[url]) {
@@ -339,7 +342,7 @@
             } else {
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = url;
+                script.src = url + '?' + that._context.version;
                 this._$head[0].appendChild(script);
                 if (callback) {
                     var task = {
@@ -367,9 +370,12 @@
     //--------------htmlLoader--start-------------创建html加载控制对象
     var htmlLoader = {
 //        _pattern:/\r?\n */g,
+        _index:index,
+        _context:context,
         load:function (url, callback) {
             var that = this;
-            $.get(url, function (data) {
+            var newUrl = url + '?' + that._context.version;
+            $.get(newUrl, function (data) {
 //                data = data.replace(that._pattern, '');
                 callback(data);
             }, 'text');
@@ -520,7 +526,7 @@
                 };
                 webSocket.onclose = function (event) {
                     var loginUserId = this._session.get('loginUserId');
-                    if(loginUserId) {
+                    if (loginUserId) {
                         this.send('{"act":"LOGOUT"}');
                     }
                     delete this._webSocketMap[this._serverName];
@@ -679,16 +685,16 @@
                     //绑定方法
                     //
                     yy.debug = function (msg) {
-                        this._logger.debug(msg);
+                        this._logger.debug(this.loaderId + ':' + msg);
                     };
                     yy.info = function (msg) {
-                        this._logger.info(msg);
+                        this._logger.info(this.loaderId + ':' + msg);
                     };
                     yy.warn = function (msg) {
-                        this._logger.warn(msg);
+                        this._logger.warn(this.loaderId + ':' + msg);
                     };
                     yy.error = function (msg) {
-                        this._logger.error(msg);
+                        this._logger.error(this.loaderId + ':' + msg);
                     };
                     //
                     yy.findInModule = function (key) {
@@ -716,7 +722,7 @@
                             _handler:timer,
                             execute:function () {
                                 var result = false;
-                                if(this._times <= 0) {
+                                if (this._times <= 0) {
                                     result = true;
                                     this._handler.execute();
                                 } else {
@@ -728,104 +734,104 @@
                         this._taskManager.addTask(task);
                     };
                     //动画
-                    yy.flash = function() {
+                    yy.flash = function () {
                         this.show();
                         this.$this.addClass('animated flash');
                     };
-                    yy.stopFlash = function() {
+                    yy.stopFlash = function () {
                         this.$this.removeClass('animated flash');
                     };
-                    yy.bounceIn = function() {
+                    yy.bounceIn = function () {
                         this.show();
                         this.$this.addClass('animated bounceIn');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated bounceIn');
                             }
                         });
                     };
-                    yy.bounceOut = function() {
+                    yy.bounceOut = function () {
                         this.$this.addClass('animated bounceOut');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated bounceOut');
                                 this.yy.hide();
                             }
                         });
                     };
-                    yy.lightSpeedIn = function() {
+                    yy.lightSpeedIn = function () {
                         this.show();
                         this.$this.addClass('animated lightSpeedIn');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated lightSpeedIn');
                             }
                         });
                     };
-                    yy.lightSpeedOut = function() {
+                    yy.lightSpeedOut = function () {
                         this.$this.addClass('animated lightSpeedOut');
                         this.addTimerTask({
                             yy:this,
-                            times: 2,
-                            execute:function() {
+                            times:2,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated lightSpeedOut');
                                 this.yy.hide();
                             }
                         });
                     };
-                    yy.fadeInLeft = function() {
+                    yy.fadeInLeft = function () {
                         this.show();
                         this.$this.addClass('animated fadeInLeftBig');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated fadeInLeftBig');
                             }
                         });
                     };
-                    yy.fadeOutLeft = function() {
+                    yy.fadeOutLeft = function () {
                         this.$this.addClass('animated fadeOutLeftBig');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated fadeOutLeftBig');
                                 this.yy.hide();
                             }
                         });
                     };
-                    yy.fadeInRight = function() {
+                    yy.fadeInRight = function () {
                         this.show();
                         this.$this.addClass('animated fadeInRightBig');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated fadeInRightBig');
                             }
                         });
                     };
-                    yy.fadeOutRight = function() {
+                    yy.fadeOutRight = function () {
                         this.$this.addClass('animated fadeOutRightBig');
                         this.addTimerTask({
                             yy:this,
-                            times: 4,
-                            execute:function() {
+                            times:4,
+                            execute:function () {
                                 this.yy.$this.removeClass('animated fadeOutRightBig');
                                 this.yy.hide();
                             }
                         });
                     };
-                    yy.submitAnimate = function(action, times) {
-                        if(this[action]) {
-                            if(!times) {
+                    yy.submitAnimate = function (action, times) {
+                        if (this[action]) {
+                            if (!times) {
                                 times = 1;
                             }
                             var timer = {
@@ -876,7 +882,7 @@
                     yy.setLabel = function (label) {
                         this.$this.text(label);
                     };
-                    yy.getLabel = function() {
+                    yy.getLabel = function () {
                         return this.$this.text();
                     };
                     //session
@@ -1104,25 +1110,29 @@
             var keyCode = event.keyCode;
             if (keyCode == 13) {
                 var target = event.target;
-                while (target.id === '') {
-                    target = target.parentElement;
-                }
-                var targetId = target.id;
-                var yy = components.findById(targetId);
-                if (yy && yy.eventListener && yy.eventListener.enter) {
-                    yy.eventListener.enter(yy, event);
+                if (target.id) {
+                    while (target.id === '') {
+                        target = target.parentElement;
+                    }
+                    var targetId = target.id;
+                    var yy = components.findById(targetId);
+                    if (yy && yy.eventListener && yy.eventListener.enter) {
+                        yy.eventListener.enter(yy, event);
+                    }
                 }
             }
             if (keyCode == 229 || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 48 && keyCode <= 57) || keyCode == 8 || (keyCode >= 188 && keyCode <= 192) || (keyCode >= 219 && keyCode <= 222) || keyCode == 32 || keyCode == 46) {
                 var target = event.target;
-                while (target.id === '') {
-                    target = target.parentElement;
-                }
-                var targetId = target.id;
-                var yy = components.findById(targetId);
-                if (yy && yy.type === 'yy_form' && yy.eventListener && yy.eventListener.change) {
-                    if (yy.isChange()) {
-                        yy.eventListener.change(yy, event);
+                if (target.id) {
+                    while (target.id === '') {
+                        target = target.parentElement;
+                    }
+                    var targetId = target.id;
+                    var yy = components.findById(targetId);
+                    if (yy && yy.type === 'yy_form' && yy.eventListener && yy.eventListener.change) {
+                        if (yy.isChange()) {
+                            yy.eventListener.change(yy, event);
+                        }
                     }
                 }
             }

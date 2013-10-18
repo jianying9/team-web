@@ -1,6 +1,6 @@
 /**
  * module组件
- * User: zoe
+ * User: aladdin
  * Date: 9/12/12
  * Time: 6:19 PM
  */
@@ -30,7 +30,7 @@ $.yyLoadPlugin({
         parsers.put('yy_form', {
             group:true,
             config:[],
-            childParsers:['yy_button'],
+            childParsers:['yy_button', 'yy_datepicker', 'yy_datetimepicker'],
             _utils:utils,
             parse:function (yy, config) {
                 yy.extend.field = {};
@@ -109,6 +109,24 @@ $.yyLoadPlugin({
             childParsers:[]
         });
         //
+        parsers.put('yy_datepicker', {
+            group:false,
+            config:[],
+            childParsers:[],
+            parse:function (yy, config) {
+                yy.$this.datepicker();
+            }
+        });
+        //
+        parsers.put('yy_datetimepicker', {
+            group:false,
+            config:[],
+            childParsers:[],
+            parse:function (yy, config) {
+                yy.$this.datepicker();
+            }
+        });
+        //
         parsers.put('yy_tab_item', {
             _listeners:listeners,
             group:false,
@@ -149,7 +167,7 @@ $.yyLoadPlugin({
                         tabItem = tabItems[tabIndex];
                         tabItem.$this.removeClass('yy_selected');
                     }
-                }
+                };
             }
         });
         //
@@ -201,7 +219,7 @@ $.yyLoadPlugin({
                     yy.initScroll = function () {
                         var $this = this.$this;
                         var scrollHeight = $this[0].scrollHeight;
-                        var clientHeight = $this[0].clientHeight;
+                        var clientHeight = $this[0].clientHeight + 3;
                         if (clientHeight < scrollHeight) {
                             this.extend.hasScroll = true;
                             this.extend.scroll.initScroll(clientHeight, scrollHeight);
@@ -248,6 +266,10 @@ $.yyLoadPlugin({
                 yy.getData = function () {
                     var data = this.group.extend.data;
                     return data[this.key];
+                };
+                yy.selected = function () {
+                    this.parent.unSelectedAll();
+                    this.$this.addClass('yy_selected');
                 }
             }
         });
@@ -262,16 +284,20 @@ $.yyLoadPlugin({
                     var html = '<div class="yy_scroll"></div>';
                     yy.$this.append(html);
                     yy.extend.scroll = {};
+                    yy.extend.pageIndex = 1;
+                    yy.extend.pageSize = 15;
+                    yy.extend.pageNum = 0;
+                    yy.extend.pageTotal = 0;
                     yy._initScroll = function () {
                         var $this = this.$this;
                         var scrollHeight = $this[0].scrollHeight;
-                        var clientHeight = $this[0].clientHeight;
+                        var clientHeight = $this[0].clientHeight + 3;
                         if (clientHeight < scrollHeight) {
                             this.extend.hasScroll = true;
                             this.extend.scroll.initScroll(clientHeight, scrollHeight);
                         } else {
                             this.extend.hasScroll = false;
-                            this.extend.scroll.$this.css({height: 0});
+                            this.extend.scroll.$this.css({height:0});
                         }
                     };
                     yy._scrollBottom = function () {
@@ -285,25 +311,33 @@ $.yyLoadPlugin({
                             $this.scrollTop(newTop);
                         }
                     };
+                    yy._scrollTop = function () {
+                        if (yy.extend.hasScroll = true) {
+                            var scroll = yy.extend.scroll;
+                            var $this = yy.$this;
+                            scroll.scrollTop(0);
+                            $this.scrollTop(0);
+                        }
+                    };
                     this._listeners.addEventListener({
                         target:yy,
                         type:'mousewheel',
                         handler:function (yy, event, delta, deltaX, deltaY) {
                             if (yy.extend.hasScroll = true) {
-                                var speed = 50;
                                 var scroll = yy.extend.scroll;
                                 var $this = yy.$this;
                                 var scrollHeight = $this[0].scrollHeight;
                                 var clientHeight = $this[0].clientHeight;
                                 var top = $this.scrollTop();
+                                var speed = 50;
                                 if (delta > 0) {
                                     speed = -speed;
                                 }
                                 var newTop = top + speed;
                                 //触发滚动事件
-                                if (newTop * 2 >= (scrollHeight - clientHeight)) {
-                                    if (yy.eventListener && yy.eventListener.scrollHalf) {
-                                        yy.eventListener.scrollHalf(yy);
+                                if (newTop >= scrollHeight - clientHeight) {
+                                    if (yy.eventListener && yy.eventListener.scrollBottom) {
+                                        yy.eventListener.scrollBottom(yy);
                                     }
                                 }
                                 if (newTop > scrollHeight - clientHeight) {
@@ -332,6 +366,30 @@ $.yyLoadPlugin({
                     if (!this._dataToHtml) {
                         throw 'Un init list method dataToHtml!id:' + this.id;
                     }
+                };
+                yy.getPageIndex = function () {
+                    return this.extend.pageIndex;
+                };
+                yy.setPageIndex = function (pageIndex) {
+                    this.extend.pageIndex = pageIndex;
+                };
+                yy.getPageSize = function () {
+                    return this.extend.pageSize;
+                };
+                yy.setPageSize = function (pageSize) {
+                    this.extend.pageSize = pageSize;
+                };
+                yy.getPageNum = function () {
+                    return this.extend.pageNum;
+                };
+                yy.setPageNum = function (pageNum) {
+                    this.extend.pageNum = pageNum;
+                };
+                yy.getPageTotal = function () {
+                    return this.extend.pageTotal;
+                };
+                yy.setPageTotal = function (pageTotal) {
+                    this.extend.pageTotal = pageTotal;
                 };
                 yy.init = function (config) {
                     this._dataToHtml = config.dataToHtml;
@@ -394,6 +452,45 @@ $.yyLoadPlugin({
                         }
                     });
                     that._initScroll();
+                };
+                yy.addItemDataFirst = function (itemData) {
+                    var item;
+                    this.check();
+                    var that = this;
+                    var key = that.extend.key;
+                    var html = '';
+                    var localData = that.extend.data;
+                    var id = itemData[key];
+                    if (!id) {
+                        throw 'list addItemDataToTop error! can not find value by key:' + key;
+                    }
+                    if (localData[id]) {
+                        item = this.findInChildren(id);
+                    } else {
+                        var itemEventListener = that.extend.itemEventListener;
+                        localData[id] = itemData;
+                        html += '<div id="' + id + '" class="yy_list_item"';
+                        if (itemEventListener) {
+                            html += ' yyEventListener="' + itemEventListener + '"';
+                        }
+                        html += '>';
+                        html += that._dataToHtml(itemData);
+                        html += '</div>';
+
+                        that.$this.children(':first-child').before(html);
+                        //
+                        item = that._parsers.parse({
+                            loaderId:that.loaderId,
+                            type:'yy_list_item',
+                            $this:$('#' + id),
+                            parent:that,
+                            group:that,
+                            window:that.window
+                        });
+                    }
+                    that._initScroll();
+                    that._scrollTop();
+                    return item;
                 };
                 yy.addItemData = function (itemData) {
                     var item;
@@ -471,6 +568,11 @@ $.yyLoadPlugin({
                     }
                     return num;
                 };
+                yy.unSelectedAll = function () {
+                    for (var id in this.children) {
+                        this.children[id].$this.removeClass('yy_selected');
+                    }
+                }
             }
         });
         //

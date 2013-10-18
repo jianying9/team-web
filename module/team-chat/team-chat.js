@@ -100,7 +100,7 @@ $.yyLoadListener('team-chat', {
                 var messageNotifyList = yy.findInModule('message-notify-list');
                 messageNotifyList.removeItem(itemData.userId);
                 var num = messageNotifyList.size();
-                if(num == 0) {
+                if (num == 0) {
                     messageNotifyList.hide();
                 }
             }
@@ -141,12 +141,12 @@ $.yyLoadListener('team-chat', {
                                 message[data.createTime] = data;
                                 isNotify = true;
                             }
-                            if(isNotify) {
-                                if(!yy.isVisible()) {
+                            if (isNotify) {
+                                if (!yy.isVisible()) {
                                     yy.show();
                                 }
                                 var notifyItemData = yy.getItemData(data.sendId);
-                                if(!notifyItemData) {
+                                if (!notifyItemData) {
                                     var notifyItem = yy.addItemData(itemData);
                                     notifyItem.flash();
                                 }
@@ -161,7 +161,7 @@ $.yyLoadListener('team-chat', {
                 if (message.flag === 'SUCCESS') {
                     var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
-                    if (loginUserId != data.userId) {
+                    if (loginUserId && loginUserId != data.userId) {
                         var contactOnlineList = yy.findInModule('contact-online-list');
                         var itemData = contactOnlineList.getItemData(data.userId);
                         if (itemData) {

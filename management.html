@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="libs/css/animate.css"/>
     <link rel="stylesheet" href="libs/css/jquery-ui-1.10.3.datepicker.css"/>
     <link rel="stylesheet" href="libs/css/yy.css"/>
-    <link rel="stylesheet" href="css/team.css"/>
+    <link rel="stylesheet" href="css/management.css"/>
     <!--<script type="text/javascript" src="libs/modernizr-2.6.2.js"></script>-->
     <script type="text/javascript" src="libs/scripts/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="libs/scripts/jquery.mousewheel-3.0.6.js"></script>
@@ -24,21 +24,14 @@
     $(document).ready(function () {
         //初始化配置
         $.yyConfig({
+            managementServer:'ws://192.168.59.48:80/team/management.io',
             teamServer:'ws://192.168.59.48:80/team/socket.io',
-            defaultServer:'ws://192.168.59.48:80/team/socket.io',
+            defaultServer:'ws://192.168.59.48:80/team/management.io',
             logLevel:4,
-            version: 22
+            version:14
         });
         //加载主模块
-        $.yyLoadModule('team-user');
-//        $.yyLoadModule('team-user', function(yy) {
-//            var loginForm = yy.findInModule('team-login-form');
-//            loginForm.loadData({userEmail:'ljy18659199765@gmail.com'});
-//            loginForm.loadData({userEmail:'ljy18659199765@gmail.com', password:'000000'});
-//            var msg = loginForm.getData();
-//            msg.act = 'LOGIN';
-//            loginForm.sendMessage(msg);
-//        });
+        $.yyLoadModule('management-main');
     });
 </script>
 </body>

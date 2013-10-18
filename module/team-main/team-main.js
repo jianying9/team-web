@@ -121,12 +121,9 @@ $.yyLoadListener('team-main', {
             },
             FORCED_LOGOUT:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var loginUserId = yy.getSession('loginUserId');
-                    if (loginUserId == data.userId) {
-                        yy.clearSession();
-                        yy.remove();
-                        $.yyLoadModule('team-user');
-                    }
+                    yy.clearSession();
+                    yy.remove();
+                    $.yyLoadModule('team-user');
                 }
             }
         }

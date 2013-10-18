@@ -1,5 +1,5 @@
 /**
- * User: zoe
+ * User: aladdin
  * Date: 12/21/12
  * Time: 10:50 AM
  */
@@ -50,7 +50,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 .team_close {
     height: 18px;
     width: 18px;
-    background: url(images/icon.png) no-repeat -414px -108px;
+    background: url(../libs/css/images/icon.png) no-repeat -414px -108px;
 }
 
 .team_close:hover {
@@ -251,13 +251,6 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     right: 0;
 }
 
-.add_friend_window {
-    color: #444;
-    top: 45px;
-    left: 600px;
-    font-weight: normal;
-}
-
 .main_content {
     position: relative;
     overflow: hidden;
@@ -359,6 +352,13 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 }
 
 /*-------------------team-add-friend-----------------*/
+.add_friend_window {
+    color: #444;
+    top: 45px;
+    right: 260px;
+    font-weight: normal;
+}
+
 .team_add_friend {
     width: 500px;
 }
@@ -470,7 +470,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 }
 
 .chat_contact_tab .chat_tab_img {
-    background: url(images/icon.png) no-repeat -30px -33px;
+    background: url(../libs/css/images/icon.png) no-repeat -30px -33px;
 }
 
 .chat_contact_tab.yy_selected .chat_tab_img {
@@ -478,7 +478,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 }
 
 .chat_group_tab .chat_tab_img {
-    background: url(images/icon.png) no-repeat 0 -33px;
+    background: url(../libs/css/images/icon.png) no-repeat 0 -33px;
 }
 
 .chat_group_tab.yy_selected .chat_tab_img {
@@ -486,7 +486,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 }
 
 .chat_last_tab .chat_tab_img {
-    background: url(images/icon.png) no-repeat -330px -33px;
+    background: url(../libs/css/images/icon.png) no-repeat -330px -33px;
 }
 
 .chat_last_tab.yy_selected .chat_tab_img {
@@ -526,7 +526,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 .chat_contact_online {
     width: 11px;
     height: 11px;
-    background: url(images/icon.png) no-repeat -614px -94px;
+    background: url(../libs/css/images/icon.png) no-repeat -614px -94px;
 }
 
 .chat_contact_list .yy_list_item .chat_contact_online {
@@ -546,9 +546,6 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 
 .chat_message_list {
     border-bottom: 1px solid gainsboro;
-}
-
-.chat_message_list {
     padding: 0 15px;
     height: 220px;
 }
