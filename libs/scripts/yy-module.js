@@ -530,6 +530,26 @@ $.yyLoadPlugin({
                     that._scrollBottom();
                     return item;
                 };
+                yy.getItem = function (keyValue) {
+                    var child;
+                    var result;
+                    for (var id in this.children) {
+                        child = this.children[id];
+                        if (child.key == keyValue) {
+                            result = child;
+                            break;
+                        }
+                    }
+                    return result;
+                };
+                yy.hideAllItem = function () {
+                    var child;
+                    for (var id in this.children) {
+                        child = this.children[id];
+                        child.hide();
+                    }
+                    this._initScroll();
+                };
                 yy.hideItem = function (keyValue) {
                     var child;
                     for (var id in this.children) {
@@ -537,6 +557,14 @@ $.yyLoadPlugin({
                         if (child.key == keyValue) {
                             child.hide();
                         }
+                    }
+                    this._initScroll();
+                };
+                yy.showAllItem = function () {
+                    var child;
+                    for (var id in this.children) {
+                        child = this.children[id];
+                        child.show();
                     }
                     this._initScroll();
                 };
