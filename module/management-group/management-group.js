@@ -105,6 +105,33 @@ $.yyLoadListener('management-group', {
                 serviceInfoPanel.fadeOutRight();
                 serviceList.fadeInLeft();
             }
+        },
+        testListener:{
+            click:function (yy) {
+                var actionName = yy.window.getContext('actionName');
+                var serviceInfoList = yy.findInModule('service-info-list');
+                var infoItem = serviceInfoList.getItem(actionName);
+                if (infoItem) {
+                    var testPanel = yy.findInModule('test-window-area');
+                    var key = actionName + '_window';
+                    var testWindow = testPanel.openWindow({
+                        class:'test_window yy_hide',
+                        key:key
+                    });
+                    var actionInfo = infoItem.getData();
+                    testWindow.setContext({
+                        actionName:actionName,
+                        actionInfo:actionInfo
+                    });
+                    testWindow.setHeaderLabel(actionName + '接口测试');
+                    testWindow.loadModule('management-test');
+                    if (testWindow.isVisible()) {
+                        testWindow.bounceOut();
+                    } else {
+                        testWindow.bounceIn();
+                    }
+                }
+            }
         }
     },
     messageListener:{

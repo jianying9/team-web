@@ -210,3 +210,62 @@ body {
     padding: 6px 6px;
     float: left;
 }
+
+.test-window-area {
+    position: relative;
+}
+
+.test_window {
+    width: 600px;
+    height: 400px;
+    cursor: default;
+    top: 0;
+    left: 0;
+}
+
+.test_module {
+    position: relative;
+}
+
+.test_form {
+    width: 250px;
+    height: 373px;
+    padding: 1px;
+    border-right: 1px solid gainsboro;
+}
+
+.test_button {
+    display:block;
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+.test_form .yy_form_label {
+    width: 70px;
+    display: inline-block;
+}
+
+.test_form input {
+    margin-top: 2px;
+    width: 175px;
+    background-color: #E9E9E9;
+    border: 1px solid #BFBFBF;
+    border-radius: 1px;
+    height: 12px;
+    padding: 2px 0;
+    display: inline-block;
+}
+
+.test_response_form {
+    position: absolute;
+    left: 254px;
+    top: 0;
+    width: 344px;
+    height: 373px;
+}
+
+.test_response_form textarea {
+    width: 100%;
+    border: 0 solid gainsboro;
+    height: 100%;
+}

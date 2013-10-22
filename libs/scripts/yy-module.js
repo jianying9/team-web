@@ -10,7 +10,6 @@ $.yyLoadPlugin({
             cryptoJS = YY.CryptoJS,
             utils = YY.utils,
             listeners = YY.listeners,
-            context = YY.context,
             index = YY.index,
             root = YY.root;
         var totalParser = ['yy_ignore', 'yy_panel', 'yy_button', 'yy_form', 'yy_window', 'yy_tab', 'yy_list', 'yy_canvas', 'yy_scroll'];
@@ -37,14 +36,18 @@ $.yyLoadPlugin({
                 yy.extend.lastData = {};
                 yy._utils = this._utils;
                 yy._cryptoJS = cryptoJS;
-                var $fields = yy.$this.children('input,textarea');
-                $fields.each(function () {
-                    var $this = $(this);
-                    var name = $this.attr('name');
-                    if (name) {
-                        yy.extend.field[name] = $this;
-                    }
-                });
+                yy._parse = function () {
+                    var that = this;
+                    var $fields = that.$this.children('input,textarea');
+                    $fields.each(function () {
+                        var $this = $(this);
+                        var name = $this.attr('name');
+                        if (name) {
+                            that.extend.field[name] = $this;
+                        }
+                    });
+                };
+                yy._parse();
                 yy.getData = function () {
                     var field = this.extend.field,
                         data = {};
@@ -53,7 +56,7 @@ $.yyLoadPlugin({
                     var value;
                     for (var name in field) {
                         $field = field[name];
-                        value = $field.attr('value')
+                        value = $field.attr('value');
                         yyInputHandler = $field.attr('yyInputHandler');
                         if (yyInputHandler && yyInputHandler === 'MD5') {
                             value = this._cryptoJS.MD5(value);
@@ -99,6 +102,18 @@ $.yyLoadPlugin({
                         this.extend.lastData = newData;
                     }
                     return result;
+                };
+                yy.addInput = function (label, name) {
+                    var html = '<div class="yy_form_label">' + label + '</div>'
+                        + '<input class="yy_form_input" type="text" name="' + name + '"/>';
+                    this.$this.append(html);
+                    this._parse();
+                };
+                yy.addTextarea = function (label, name) {
+                    var html = '<div class="yy_form_label">' + label + '</div>'
+                        + '<textarea class="yy_form_textarea" name="' + name + '"></textarea>';
+                    this.$this.append(html);
+                    this._parse();
                 };
             }
         });
@@ -184,10 +199,9 @@ $.yyLoadPlugin({
                         this.extend.scroll = true;
                         this.extend.scrollHeight = scrollHeight;
                         var sHeight = parseInt(clientHeight * clientHeight / scrollHeight);
+                        this.extend.seed = (scrollHeight - clientHeight) / (scrollHeight - sHeight);
                         this.extend.sHeight = sHeight;
-                        var seed = (scrollHeight - clientHeight) / (scrollHeight - sHeight);
-                        this.extend.seed = seed;
-                        $this.css({height:sHeight});
+                            $this.css({height:sHeight});
                     }
                 };
                 yy.scrollTop = function (top) {

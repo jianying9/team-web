@@ -456,23 +456,34 @@
         }
     };
 
+    var messageInterceptor = {};
+    $.yyAddMessageInterceptor = function(interceptor) {
+        var id = index.nextIndex();
+        messageInterceptor.id = interceptor;
+    };
+    YY.messageInterceptor = messageInterceptor;
+
     var response = {
         _listeners:listeners,
         _services:services,
         _root:root,
+        _messageInterceptor:messageInterceptor,
         _notify:function (yy, msg) {
             if (yy && yy.messageListener && yy.messageListener[msg.act]) {
                 yy.messageListener[msg.act](yy, msg);
             }
             var child,
                 children = yy.children;
-            for (var index in children) {
-                child = children[index];
+            for (var id in children) {
+                child = children[id];
                 this._notify(child, msg);
             }
         },
         read:function (message) {
             var res = eval('(' + message + ')');
+            for(var id in this._messageInterceptor) {
+                this._messageInterceptor[id].invoke(res);
+            }
             var info = this._services.message[res.flag];
             if (!info) {
                 var service = this._services.get(res.act);
@@ -518,7 +529,6 @@
                     this._webSocketMap[this._serverName] = this;
                     this.send(message);
                     this._logger.debug('sendMessage:' + message);
-
                 };
                 webSocket.onmessage = function (event) {
                     this._logger.debug('onMessage:' + event.data);
