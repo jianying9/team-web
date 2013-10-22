@@ -41,6 +41,14 @@ $.yyLoadListener('management-main', {
                     groupWindow.bounceIn();
                 }
             }
+        },
+        md5Listener:{
+            click:function (yy) {
+                var inputForm = yy.findInModule('md5_input-form');
+                var outputForm = yy.findInModule('md5_output-form');
+                var msg = inputForm.getData();
+                outputForm.loadData(msg);
+            }
         }
     },
     messageListener:{
