@@ -29,12 +29,13 @@ $.yyLoadListener('management-main', {
                 var groupPanel = yy.findInModule('group-window-area');
                 var key = data.groupName + '_window';
                 var groupWindow = groupPanel.openWindow({
-                    class:'group_window yy_hide',
+                    clazz:'group_window yy_hide',
                     key:key
                 });
-                groupWindow.setContext({groupName:data.groupName});
                 groupWindow.setHeaderLabel(data.groupName);
-                groupWindow.loadModule('management-group');
+                groupWindow.loadModule('management-group', {
+                        groupName:data.groupName
+                    });
                 if (groupWindow.isVisible()) {
                     groupWindow.bounceOut();
                 } else {

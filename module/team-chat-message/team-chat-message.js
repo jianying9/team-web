@@ -7,14 +7,14 @@ $.yyLoadListener('team-chat-message', {
     finishedListener:{
         initListener:function (yy) {
             //初始化chat-message-list
-            var friendId = yy.window.getContext('friendId');
+            var friendId = yy.getContext('friendId');
             var chatMessageList = yy.findInModule('chat-message-list');
             chatMessageList.init({
                 key:'messageId',
                 dataToHtml:function (data) {
-                    var friendId = this.window.getContext('friendId');
+                    var friendId = this.getContext('friendId');
                     var result;
-                    if (data.receiveId == friendId) {
+                    if (data.receiveId === friendId) {
                         result = '<div class="chat_message_me">';
                     } else {
                         result = '<div class="chat_message_friend">';
@@ -47,7 +47,7 @@ $.yyLoadListener('team-chat-message', {
                 var chatMessageForm = yy.findInModule('chat-message-form');
                 var data = chatMessageForm.getData();
                 chatMessageForm.clear();
-                var friendId = yy.window.getContext('friendId');
+                var friendId = yy.getContext('friendId');
                 data.receiveId = friendId;
                 data.act = 'INSERT_USER_MESSAGE';
                 yy.sendMessage(data);
@@ -57,7 +57,7 @@ $.yyLoadListener('team-chat-message', {
             enter:function (yy) {
                 var data = yy.getData();
                 yy.clear();
-                var friendId = yy.window.getContext('friendId');
+                var friendId = yy.getContext('friendId');
                 data.receiveId = friendId;
                 data.act = 'INSERT_USER_MESSAGE';
                 yy.sendMessage(data);
@@ -84,9 +84,9 @@ $.yyLoadListener('team-chat-message', {
         userMessageListener:{
             INSERT_USER_MESSAGE:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var friendId = yy.window.getContext('friendId');
+                    var friendId = yy.getContext('friendId');
                     var data = message.data;
-                    if (data.sendId == friendId || data.receiveId == friendId) {
+                    if (data.sendId === friendId || data.receiveId === friendId) {
                         var chatMessageList = yy.findInModule('chat-message-list');
                         chatMessageList.addItemData(message.data);
                     }
@@ -96,9 +96,9 @@ $.yyLoadListener('team-chat-message', {
         canvasMessageListener:{
             SEND_CANVAS_COMMAND:function (yy, message) {
                 if (message.flag === 'SUCCESS') {
-                    var friendId = yy.window.getContext('friendId');
+                    var friendId = yy.getContext('friendId');
                     var data = message.data;
-                    if (data.sendId == friendId) {
+                    if (data.sendId === friendId) {
                         yy.draw(data.x, data.y);
                     }
                 }

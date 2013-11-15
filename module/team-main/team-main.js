@@ -1,5 +1,5 @@
 /**
- * User: zoe
+ * User: aladdin
  * Date: 12/21/12
  * Time: 10:46 AM
  */
@@ -45,7 +45,7 @@ $.yyLoadListener('team-main', {
         userMenuListener:{
             click:function (yy) {
                 var userMenuWindow = yy.openWindow({
-                    class:'user_menu_window yy_hide',
+                    clazz:'user_menu_window yy_hide',
                     key:'user-menu-window'
                 });
                 var nickName = yy.getSession('loginNickName');
@@ -62,7 +62,7 @@ $.yyLoadListener('team-main', {
             click:function (yy) {
                 var teamMain = yy.findInModule('team-main');
                 var addFriendWindow = teamMain.openWindow({
-                    class:'add_friend_window yy_hide',
+                    clazz:'add_friend_window yy_hide',
                     key:'add-friend-window'
                 });
                 addFriendWindow.setHeaderLabel('添加好友');
@@ -112,7 +112,7 @@ $.yyLoadListener('team-main', {
                 if (message.flag === 'SUCCESS') {
                     var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
-                    if (loginUserId == data.userId) {
+                    if (loginUserId === data.userId) {
                         yy.clearSession();
                         yy.remove();
                         $.yyLoadModule('team-user');

@@ -78,12 +78,13 @@ $.yyLoadListener('team-chat', {
                 var teamChat = yy.findInModule('team-chat-message-area');
                 var key = data.userId + '_window';
                 var chatWindow = teamChat.openWindow({
-                    class:'chat_window yy_hide',
+                    clazz:'chat_window yy_hide',
                     key:key
                 });
-                chatWindow.setContext({friendId:data.userId});
                 chatWindow.setHeaderLabel(data.nickName);
-                chatWindow.loadModule('team-chat-message');
+                chatWindow.loadModule('team-chat-message', {
+                        friendId:data.userId
+                    });
                 if (chatWindow.isVisible()) {
                     chatWindow.bounceOut();
                 } else {
@@ -100,7 +101,7 @@ $.yyLoadListener('team-chat', {
                 var messageNotifyList = yy.findInModule('message-notify-list');
                 messageNotifyList.removeItem(itemData.userId);
                 var num = messageNotifyList.size();
-                if (num == 0) {
+                if (num === 0) {
                     messageNotifyList.hide();
                 }
             }
@@ -112,7 +113,7 @@ $.yyLoadListener('team-chat', {
                 if (message.flag === 'SUCCESS') {
                     var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
-                    if (data.receiveId == loginUserId) {
+                    if (data.receiveId === loginUserId) {
                         //收到新的消息,查找对应的好友
                         var contactOfflineList = yy.findInModule('contact-offline-list');
                         var itemData = contactOfflineList.getItemData(data.sendId);
@@ -161,7 +162,7 @@ $.yyLoadListener('team-chat', {
                 if (message.flag === 'SUCCESS') {
                     var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
-                    if (loginUserId && loginUserId != data.userId) {
+                    if (loginUserId && loginUserId !== data.userId) {
                         var contactOnlineList = yy.findInModule('contact-online-list');
                         var itemData = contactOnlineList.getItemData(data.userId);
                         if (itemData) {
@@ -178,7 +179,7 @@ $.yyLoadListener('team-chat', {
                 if (message.flag === 'SUCCESS') {
                     var data = message.data;
                     var loginUserId = yy.getSession('loginUserId');
-                    if (loginUserId != data.userId) {
+                    if (loginUserId !== data.userId) {
                         var contactOnlineList = yy.findInModule('contact-online-list');
                         var itemData = contactOnlineList.getItemData(data.userId);
                         if (!itemData) {
@@ -216,7 +217,7 @@ $.yyLoadListener('team-chat', {
                         msg = {
                             act:'ASSERT_FRIEND_ONLINE',
                             userId:data[dataIndex].userId
-                        }
+                        };
                         yy.addTimerTask({
                             _yy:yy,
                             times:times,

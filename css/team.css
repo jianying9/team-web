@@ -50,7 +50,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 .team_close {
     height: 18px;
     width: 18px;
-    background: url(../libs/css/images/icon.png) no-repeat -414px -108px;
+    background: url(http://jianying9.github.io/libs/css/images/icon.png) no-repeat -414px -108px;
 }
 
 .team_close:hover {

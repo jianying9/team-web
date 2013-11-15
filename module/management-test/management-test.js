@@ -6,7 +6,7 @@
 $.yyLoadListener('management-test', {
     finishedListener:{
         initListener:function (yy) {
-            var actionInfo = yy.window.getContext('actionInfo');
+            var actionInfo = yy.getContext('actionInfo');
             if (actionInfo) {
                 var testForm = yy.findInModule('test-form');
                 var importantParameter = actionInfo.importantParameter;
@@ -86,7 +86,7 @@ $.yyLoadListener('management-test', {
             click:function (yy) {
                 var testForm = yy.findInModule('test-form');
                 var msg = testForm.getData();
-                var actionName = yy.window.getContext('actionName');
+                var actionName = yy.getContext('actionName');
                 msg.act = actionName;
                 msg.server = 'teamServer';
                 yy.sendMessage(msg);
