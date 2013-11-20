@@ -44,6 +44,7 @@ $.yyLoadListener('team-chat', {
     eventListener:{
         contactTabListener:{
             click:function (yy) {
+                yy.selected();
                 var contactPanel = yy.findInModule('chat-contact-panel');
                 var groupPanel = yy.findInModule('chat-group-panel');
                 var lastPanel = yy.findInModule('chat-last-panel');
@@ -54,6 +55,7 @@ $.yyLoadListener('team-chat', {
         },
         groupTabListener:{
             click:function (yy) {
+                yy.selected();
                 var contactPanel = yy.findInModule('chat-contact-panel');
                 var groupPanel = yy.findInModule('chat-group-panel');
                 var lastPanel = yy.findInModule('chat-last-panel');
@@ -64,6 +66,7 @@ $.yyLoadListener('team-chat', {
         },
         lastTabListener:{
             click:function (yy) {
+                yy.selected();
                 var contactPanel = yy.findInModule('chat-contact-panel');
                 var groupPanel = yy.findInModule('chat-group-panel');
                 var lastPanel = yy.findInModule('chat-last-panel');
